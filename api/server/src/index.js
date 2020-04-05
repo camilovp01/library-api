@@ -28,11 +28,13 @@ app.use(bodyParser.json());
 // Import Routes
 var appRoutes = require('./routes/v1/app');
 var libraryRoutes = require('./routes/v1/library');
+var authorRoutes = require('./routes/v1/author');
 
 
 // Routes
 app.use('/v1', appRoutes);
 app.use('/v1/library', libraryRoutes);
+app.use('/v1/author', authorRoutes);
 
 //Conexión DB
 mongoose.connect(`mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`, { useNewUrlParser: true, useUnifiedTopology: true }, (err) => {

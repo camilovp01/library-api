@@ -3,7 +3,7 @@ var Book = require('../../models/book.model');
 
 var getAllBooks = async () => {
     try {
-        return await Book.find({});
+        return await Book.find({}).populate('author', 'name');
     } catch (error) {
         return error;
     }
@@ -29,11 +29,12 @@ var addBook = async (body) => {
 
 var getBookById = async (id) => {
     try {
-        return await Book.findById(id).populate('Author', 'name');
+        return await Book.findById(id).populate('author', 'name');
     } catch (error) {
         return error;
     }
 }
+
 
 var updateBook = async (id, body) => {
     try {
@@ -49,8 +50,6 @@ var updateBook = async (id, body) => {
         return error;
     }
 }
-
-
 
 
 module.exports = {
