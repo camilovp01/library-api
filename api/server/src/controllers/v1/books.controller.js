@@ -12,13 +12,14 @@ var getAllBooks = async () => {
 
 var addBook = async (body) => {
     try {
-        var { title, year, editorial, description, author } = body;
+        var { title, year, editorial, description, author, reserved } = body;
         var book = new Book({
             title,
             year,
             editorial,
             description,
-            author
+            author,
+            reserved
         });
         return await book.save();
     } catch (error) {
@@ -38,13 +39,14 @@ var getBookById = async (id) => {
 
 var updateBook = async (id, body) => {
     try {
-        var { title, year, editorial, description, author } = body;
+        var { title, year, editorial, description, author, reserved } = body;
         var book = await getBookById(id);
         book.title = title;
         book.year = year;
         book.editorial = editorial;
         book.description = description;
         book.author = author;
+        book.reserved = reserved;
         return await book.save();
     } catch (error) {
         return error;
